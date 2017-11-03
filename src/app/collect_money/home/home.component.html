@@ -1,0 +1,212 @@
+<div>
+  <div class="flex-container" fxLayout="row">
+    <div class="flex-item content-center" fxFlex="75%">
+      <mat-card>
+        <mat-card-content>
+          <mat-table #table [dataSource]="dataSource">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="Quantity">
+              <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.Quantity}}</mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="produit">
+              <mat-header-cell *matHeaderCellDef>produit</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.produit}}</mat-cell>
+            </ng-container>
+
+            <!-- Color Column -->
+            <ng-container matColumnDef="price">
+              <mat-header-cell *matHeaderCellDef>price</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.price}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="TVA">
+              <mat-header-cell *matHeaderCellDef>TVA</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.TVA}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="HT">
+              <mat-header-cell *matHeaderCellDef>HT</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.HT}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Superime">
+              <mat-header-cell *matHeaderCellDef>Superime</mat-header-cell>
+              <mat-cell *matCellDef="let element"><mat-icon>delete</mat-icon></mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="TTC">
+              <mat-header-cell *matHeaderCellDef>TTC</mat-header-cell>
+              <mat-cell *matCellDef="let element">{{element.TTC}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showDialog(row)"></mat-row>
+          </mat-table>
+        </mat-card-content>
+        <mat-card-actions class="bottom-button">
+          <div class="flex-container" fxLayout="row">
+            <div class="flex-item content-center" fxFlex="100%">
+              <mat-slide-toggle>减价 - 数字</mat-slide-toggle>&emsp;<mat-slide-toggle>减价 - 百分比</mat-slide-toggle>
+            </div>
+          </div>
+          <div class="flex-container" fxLayout="row">
+            <div class="flex-item content-center" fxFlex="20%">
+              <span>Putotal</span><br>
+              <span>6,000.00</span>
+            </div>
+            <div class="flex-item content-center" fxFlex="20%">
+              <span>TAX(15%)</span><br>
+              <span>900.00</span>
+            </div>
+            <div class="flex-item content-center" fxFlex="20%">
+              <span>TAX(15%)</span><br>
+              <span>900.00</span>
+            </div>
+            <div class="flex-item content-center" fxFlex="20%">
+              <span>TAX(15%)</span><br>
+              <span>900.00</span>
+            </div>
+            <div class="flex-item content-center" fxFlex="20%">
+              <span>TOTAL</span><br>
+              <span>900.00</span>
+            </div>
+          </div>
+        </mat-card-actions>
+        <mat-card-actions class="bottom-button">
+          <button mat-raised-button class="dangerButton" (click)="showDialog()">
+            桌号
+          </button>
+          <button mat-raised-button (click)="showDialog()">
+            打包
+          </button>
+          <button mat-raised-button color="primary" (click)="showDialog()">
+            送包
+          </button>
+          <button mat-raised-button>
+            清除账单
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="flex-item side-list" fxFlex="25%">
+      <mat-card>
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab label="菜品">
+              <mat-expansion-panel list-item-first>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    test
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                test
+              </mat-expansion-panel>
+              <mat-expansion-panel list-item-first>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    test
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                test
+              </mat-expansion-panel>
+              <mat-expansion-panel list-item-first>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    test
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                test
+              </mat-expansion-panel>
+              <mat-expansion-panel list-item-first>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    test
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                test
+              </mat-expansion-panel>
+              <mat-expansion-panel list-item-first>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    test
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                test
+              </mat-expansion-panel>
+              <mat-expansion-panel list-item-first>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    test
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                test
+              </mat-expansion-panel>
+            </mat-tab>
+            <mat-tab label="酒水">
+              <mat-list>
+                <mat-expansion-panel list-item-first>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      test
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  test
+                </mat-expansion-panel>
+                <mat-expansion-panel list-item-first>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      test
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  test
+                </mat-expansion-panel>
+                <mat-expansion-panel list-item-first>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      test
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  test
+                </mat-expansion-panel>
+                <mat-expansion-panel list-item-first>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      test
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  test
+                </mat-expansion-panel>
+                <mat-expansion-panel list-item-first>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      test
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  test
+                </mat-expansion-panel>
+                <mat-expansion-panel list-item-first>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      test
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  test
+                </mat-expansion-panel>
+              </mat-list>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

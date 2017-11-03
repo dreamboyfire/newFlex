@@ -1,0 +1,43 @@
+<h2>桌号/人数</h2>
+<mat-dialog-content>
+  <mat-list>
+    <mat-list-item>企业名</mat-list-item>
+    <mat-list-item>企业地址：门牌号/地址</mat-list-item>
+    <mat-list-item>邮编/城市</mat-list-item>
+    <mat-list-item>企业电话</mat-list-item>
+    <mat-list-item>企业siren</mat-list-item>
+    <mat-list-item>时间</mat-list-item>
+    <mat-list-item>发票号</mat-list-item>
+  </mat-list>
+  <mat-card>
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Quantity">
+        <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.Quantity}}</mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="produit">
+        <mat-header-cell *matHeaderCellDef>produit</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.produit}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="button-group">
+    <button mat-raised-button class="dangerButton">打印账单</button>
+    <button mat-raised-button>减价</button>
+  </div>
+</mat-dialog-actions>
