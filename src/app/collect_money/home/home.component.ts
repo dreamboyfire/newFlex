@@ -16,6 +16,11 @@ export class CollectMoneyHomeComponent implements OnInit {
   animal: string;
   name: string;
 
+  reduceByNum = false;
+  reduceByPercent = false;
+  showTypeList = false;
+  rowFxFlex = "100%";
+
   ngOnInit(): void {
 
   }
@@ -30,7 +35,12 @@ export class CollectMoneyHomeComponent implements OnInit {
 
   }
 
-  showDialog() {
+  showType(sidenav, row) {
+    sidenav.open();
+  }
+
+  showDialog(row) {
+
     let dialogRef = this.dialog.open(CollectMoneyInfoDialog, {
       width: '500px'
     });

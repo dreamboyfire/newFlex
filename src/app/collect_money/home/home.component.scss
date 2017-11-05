@@ -30,6 +30,10 @@
   padding: 15px !important;
 }
 
+.mat-table {
+  min-width: 1000px !important;
+}
+
 .content-center {
   padding: 15px !important;
   mat-card {
@@ -62,5 +66,9 @@
 
 mat-card-actions {
   text-align: center;
+}
+
+.mat-input-element {
+  width: 100% !important;
 }
 
