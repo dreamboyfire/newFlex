@@ -8,7 +8,7 @@ import {
   MatButtonModule, MatCardModule, MatIconModule, MatListModule, MatMenuModule, MatSelectModule, MatSidenavModule,
   MatTab,
   MatTableDataSource,
-  MatTableModule, MatTabNav, MatTabsModule,
+  MatTableModule, MatTabNav, MatTabsModule, MatToolbarModule,
   MatToolbarModule
 } from '@angular/material';
 import { GsidenavComponent } from './golbatoolbar/gsidenav/gsidenav.component';
@@ -39,7 +39,8 @@ import {TabGroupComponent} from "./golbatoolbar/tab-group/tab-group.component";
     CdkTableModule,
     MatSelectModule,
     MatListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -71,4 +71,20 @@ mat-card-actions {
 .mat-input-element {
   width: 100% !important;
 }
+.example-sidenav {
+  min-width: 350px !important;
+  .mat-drawer-backdrop {
+    visibility: hidden !important;
+    .mat-drawer-shown {
+      visibility: hidden !important;
+    }
+  }
+  .typeToolbar {
+    background-color: rgb(254, 214, 80);
+  }
+}
+
+mat-sidenav-container {
+  height: 100% !important;
+}
 

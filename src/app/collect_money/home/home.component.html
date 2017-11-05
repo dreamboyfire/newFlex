@@ -1,64 +1,64 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav class="example-sidenav" position = "end">
-    <mat-card>
-      <mat-card-content>
-        <mat-tab-group>
-          <mat-tab label="菜品" >
-            <mat-expansion-panel list-item-first>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  子分类1
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              分类下的内容
-            </mat-expansion-panel>
-            <mat-expansion-panel list-item-first>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  子分类1
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              分类下的内容
-            </mat-expansion-panel>
-            <mat-expansion-panel list-item-first>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                子分类1
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            分类下的内容
-          </mat-expansion-panel>
-            <mat-expansion-panel list-item-first>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                子分类1
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            分类下的内容
-          </mat-expansion-panel>
-            <mat-expansion-panel list-item-first>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                子分类1
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            分类下的内容
-          </mat-expansion-panel>
-            <mat-expansion-panel list-item-first>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                子分类1
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            分类下的内容
-          </mat-expansion-panel>
-          </mat-tab>
-          <mat-tab label="酒水">
-
-          </mat-tab>
-        </mat-tab-group>
-      </mat-card-content>
-    </mat-card>
+  <mat-sidenav #sidenav class="example-sidenav" position="end" disableClose>
+    <mat-toolbar class="typeToolbar">
+      <mat-icon [matMenuTriggerFor]="menu">list</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>菜品</button>
+        <button mat-menu-item>酒水</button>
+      </mat-menu>
+      <div class="flex-container" fxLayout="row">
+        <div class="flex-item content-center" fxFlex="80%">ToolBar
+        </div>
+      </div>
+    </mat-toolbar>
+    <mat-expansion-panel list-item-first>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          子分类1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      分类下的内容
+    </mat-expansion-panel>
+    <mat-expansion-panel list-item-first>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          子分类1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      分类下的内容
+    </mat-expansion-panel>
+    <mat-expansion-panel list-item-first>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          子分类1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      分类下的内容
+    </mat-expansion-panel>
+    <mat-expansion-panel list-item-first>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          子分类1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      分类下的内容
+    </mat-expansion-panel>
+    <mat-expansion-panel list-item-first>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          子分类1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      分类下的内容
+    </mat-expansion-panel>
+    <mat-expansion-panel list-item-first>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          子分类1
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      分类下的内容
+    </mat-expansion-panel>
   </mat-sidenav>
   <div>
     <div class="flex-container" fxLayout="row">

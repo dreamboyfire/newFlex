@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   MAT_PLACEHOLDER_GLOBAL_OPTIONS,
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatExpansionModule, MatIconModule, MatInputModule,
-  MatListModule,
+  MatListModule, MatMenuModule,
   MatSidenavModule, MatSlideToggleModule,
   MatTableModule, MatTabsModule, MatToolbarModule
 } from '@angular/material';
@@ -33,7 +33,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatTabsModule,
     MatListModule,
     MatExpansionModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatMenuModule
   ],
   declarations: [CollectMoneyHomeComponent, CollectMoneyInfoDialog]
 })
