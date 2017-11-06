@@ -39,8 +39,7 @@ import {TabGroupComponent} from "./golbatoolbar/tab-group/tab-group.component";
     CdkTableModule,
     MatSelectModule,
     MatListModule,
-    MatTabsModule,
-    MatToolbarModule
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

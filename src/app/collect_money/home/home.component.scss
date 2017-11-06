@@ -5,7 +5,9 @@
 @mixin dangerButton {
   background-color: #f44336;
 }
-
+.noPadding {
+  padding: 0px !important;
+}
 .form-full-width{
   width: 100% !important;
 }

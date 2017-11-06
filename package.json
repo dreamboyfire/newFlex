@@ -35,7 +35,8 @@
     "rxjs": "^5.5.2",
     "screenfull": "^3.3.2",
     "webpack": "^3.8.1",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "lodash": "4.17.4"
   },
   "devDependencies": {
     "@angular/cli": "1.5.0",
@@ -56,7 +57,8 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2"
+    "typescript": "~2.4.2",
+    "lodash": "4.17.4"
   },
   "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.",
   "main": "karma.conf.js",

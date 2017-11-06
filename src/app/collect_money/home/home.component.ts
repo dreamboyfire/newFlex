@@ -5,6 +5,7 @@ import 'rxjs/add/observable/of';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {Observable} from "rxjs/Observable";
 import {DataSource} from "@angular/cdk/collections";
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-collect-money-home',
@@ -21,6 +22,15 @@ export class CollectMoneyHomeComponent implements OnInit {
   showTypeList = false;
   rowFxFlex = "100%";
 
+  totalData = {
+    Putotal: 0,
+    tax1: 10,
+    tax2: 15,
+    tax3: 20,
+    tax4: 25,
+    total: 0
+  };
+
   ngOnInit(): void {
 
   }
@@ -31,7 +41,13 @@ export class CollectMoneyHomeComponent implements OnInit {
   dataSource = new ExampleDataSource();
 
   constructor(private fb: FormBuilder, private router: Router, public dialog: MatDialog) {
-
+    _.forEach(data, d => {
+      d["HT"] = parseFloat(d["price"]) - parseFloat(d["price"]) * parseFloat(d["TVA"]) / 100;
+      this.totalData["Putotal"] += d["HT"];
+      d["TTC"] = parseFloat(d["Quantity"]) * parseFloat(d["price"]);
+      this.totalData.total += d["TTC"];
+    });
+    this.dataSource = new ExampleDataSource();
 
   }
 
@@ -52,14 +68,55 @@ export class CollectMoneyHomeComponent implements OnInit {
   }
 
   deleteItem(item) {
-
+    console.log("deleteItem");
+    _.remove(data, {pkey: item.pkey});
+    this.dataSource = new ExampleDataSource();
   }
 
+  reduceToggle(type) {
+    if (type === "reduceByNum") {
+      if (!this.reduceByNum) {
+        this.reduceByPercent = false;
+      } else {
+        // this.reduceByPercent = true;
+      }
+    }
+
+    if (type === "reduceByPercent") {
+      if (!this.reduceByPercent) {
+        this.reduceByNum = false;
+      } else {
+        // this.reduceByNum = true;
+      }
+    }
+  }
+
+  enabledInputId(el) {
+    el.inputId = !el.inputId;
+  }
+
+  enabledInputQuantity(el) {
+    el.inputQuantity = !el.inputQuantity;
+  }
+
+  inputQuantity() {
+    _.forEach(data, d => {
+      d["HT"] = parseFloat(d["price"]) - parseFloat(d["price"]) * parseFloat(d["TVA"]) / 100;
+      this.totalData["Putotal"] += d["HT"];
+      d["TTC"] = parseFloat(d["Quantity"]) * parseFloat(d["price"]);
+      this.totalData.total += d["TTC"];
+    });
+    if (_.isNaN(this.totalData.total)) {
+      this.totalData.total = 0;
+    }
+    this.dataSource = new ExampleDataSource();
+  }
 
 }
 
 
 export interface Element {
+  pkey: number;
   id: string;
   Quantity: string;
   produit: string;
@@ -68,24 +125,26 @@ export interface Element {
   HT: string;
   Superime: string;
   TTC: string;
+  inputId: boolean;
+  inputQuantity: boolean;
 }
 
 const data: Element[] = [
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300'}
+  {pkey: 1, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 2, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 3, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 4, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 5, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 6, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 7, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 8, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 9, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 10, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 11, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 12, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 13, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 14, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false},
+  {pkey: 15, id: "a2", Quantity: "1", produit: 'Maintanance', price: "300", TVA: '10%', HT: '250', Superime: 'H', TTC: '300', inputId: false, inputQuantity: false}
 ];
 
 /**

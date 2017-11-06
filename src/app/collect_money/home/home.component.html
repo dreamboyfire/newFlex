@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav class="example-sidenav" position="end" disableClose>
+  <mat-sidenav #sidenav class="example-sidenav" position="end">
     <mat-toolbar class="typeToolbar">
       <mat-icon [matMenuTriggerFor]="menu">list</mat-icon>
       <mat-menu #menu="matMenu">
@@ -70,85 +70,121 @@
               <!-- Position Column -->
               <ng-container matColumnDef="id">
                 <mat-header-cell *matHeaderCellDef>id</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+                <mat-cell *matCellDef="let element" ><span *ngIf="!element.inputId" (click)="enabledInputId(element)">{{element.id}}</span><input
+                  *ngIf="element.inputId" matInput placeholder="id" value="{{element.id}}" (focus)="true" [(ngModel)]="element.id"></mat-cell>
               </ng-container>
 
               <!-- Name Column -->
               <ng-container matColumnDef="Quantity">
                 <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
-                <mat-cell *matCellDef="let element"><span *ngIf="!reduceByNum">{{element.Quantity}}</span><input
-                  *ngIf="reduceByNum" matInput placeholder="减价" value="Sushi" value="{{element.Quantity}}"></mat-cell>
+                <mat-cell *matCellDef="let element" ><span *ngIf="!element.inputQuantity" (click)="enabledInputQuantity(element)">{{element.Quantity}}</span><input
+                  *ngIf="element.inputQuantity" matInput placeholder="Quantity" value="{{element.Quantity}}" (focus)="true" [(ngModel)]="element.Quantity" (input)="inputQuantity()" ></mat-cell>
               </ng-container>
 
               <!-- Weight Column -->
               <ng-container matColumnDef="produit">
                 <mat-header-cell *matHeaderCellDef>produit</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.produit}}</mat-cell>
+                <mat-cell *matCellDef="let element" (click)="showType(sidenav, element)">{{element.produit}}</mat-cell>
               </ng-container>
 
               <!-- Color Column -->
               <ng-container matColumnDef="price">
                 <mat-header-cell *matHeaderCellDef>price</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.price}}</mat-cell>
+                <mat-cell *matCellDef="let element" (click)="showType(sidenav, element)">{{element.price}}</mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="TVA">
                 <mat-header-cell *matHeaderCellDef>TVA</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.TVA}}</mat-cell>
+                <mat-cell *matCellDef="let element" (click)="showType(sidenav, element)">{{element.TVA}}</mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="HT">
                 <mat-header-cell *matHeaderCellDef>HT</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.HT}}</mat-cell>
+                <mat-cell *matCellDef="let element" (click)="showType(sidenav, element)">{{element.HT}}</mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="Superime">
                 <mat-header-cell *matHeaderCellDef>Superime</mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  <mat-icon>delete</mat-icon>
+                  <mat-icon (click)="deleteItem(element)">delete</mat-icon>
                 </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="TTC">
                 <mat-header-cell *matHeaderCellDef>TTC</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.TTC}}</mat-cell>
+                <mat-cell *matCellDef="let element" (click)="showType(sidenav, element)">{{element.TTC}}</mat-cell>
               </ng-container>
 
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showType(sidenav, row)"></mat-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
             </mat-table>
           </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="flex-container" fxLayout="row">
+      <div class="flex-item content-center" fxFlex="rowFxFlex">
+        <mat-card class="noPadding">
           <mat-card-actions class="bottom-button">
+            <div class="flex-container" fxLayout="row" *ngIf="reduceByNum || reduceByPercent">
+              <div class="flex-item content-center" fxFlex="25%">
+
+              </div>
+              <div class="flex-item content-center" fxFlex="50%">
+                <form>
+                    <mat-form-field>
+                      <input matInput placeholder="减价" type="number">
+                    </mat-form-field>
+                </form>
+              </div>
+              <div class="flex-item content-center" fxFlex="25%">
+
+              </div>
+            </div>
             <div class="flex-container" fxLayout="row">
               <div class="flex-item content-center" fxFlex="100%">
-                <mat-slide-toggle [(ngModel)]="reduceByNum">减价 - 数字</mat-slide-toggle>&emsp;<mat-slide-toggle
-                [(ngModel)]="reduceByPercent">减价 - 百分比
+                <mat-slide-toggle [(ngModel)]="reduceByNum" (click)="reduceToggle('reduceByNum')">减价 - 数字</mat-slide-toggle>&emsp;<mat-slide-toggle
+                [(ngModel)]="reduceByPercent" (click)="reduceToggle('reduceByPercent')">减价 - 百分比
               </mat-slide-toggle>
               </div>
             </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="flex-container" fxLayout="row">
+      <div class="flex-item content-center" fxFlex="rowFxFlex">
+        <mat-card class="noPadding">
+          <mat-card-actions class="bottom-button">
             <div class="flex-container" fxLayout="row">
               <div class="flex-item content-center" fxFlex="20%">
                 <span>Putotal</span><br>
-                <span>6,000.00</span>
+                <span>{{totalData.Putotal}}</span>
               </div>
               <div class="flex-item content-center" fxFlex="20%">
-                <span>TAX(15%)</span><br>
-                <span>900.00</span>
+                <span>TAX({{totalData.tax1}}%)</span><br>
+                <span>{{totalData.Putotal * totalData.tax1 / 100}}</span>
               </div>
               <div class="flex-item content-center" fxFlex="20%">
-                <span>TAX(15%)</span><br>
-                <span>900.00</span>
+                <span>TAX({{totalData.tax2}}%)</span><br>
+                <span>{{totalData.Putotal * totalData.tax2 / 100}}</span>
               </div>
               <div class="flex-item content-center" fxFlex="20%">
-                <span>TAX(15%)</span><br>
-                <span>900.00</span>
+                <span>TAX({{totalData.tax3}}%)</span><br>
+                <span>{{totalData.Putotal * totalData.tax3 / 100}}</span>
               </div>
               <div class="flex-item content-center" fxFlex="20%">
-                <span>TOTAL</span><br>
-                <span>900.00</span>
+                <span>Total</span><br>
+                <span>{{totalData.total}}</span>
               </div>
             </div>
           </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="flex-container" fxLayout="row">
+      <div class="flex-item content-center" fxFlex="rowFxFlex">
+        <mat-card>
           <mat-card-actions class="bottom-button">
             <button mat-raised-button class="dangerButton" (click)="showDialog()">
               桌号
@@ -164,11 +200,6 @@
             </button>
           </mat-card-actions>
         </mat-card>
-      </div>
-
-
-      <div class="flex-item side-list" fxFlex="25%" *ngIf="showTypeList">
-
       </div>
     </div>
   </div>
