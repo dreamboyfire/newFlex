@@ -3,61 +3,22 @@
     <mat-toolbar class="typeToolbar">
       <mat-icon [matMenuTriggerFor]="menu">list</mat-icon>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>菜品</button>
-        <button mat-menu-item>酒水</button>
+        <button mat-menu-item *ngFor="let menu of typeDatas" (click)="switchType(menu)">{{menu.name}}</button>
       </mat-menu>
       <div class="flex-container" fxLayout="row">
-        <div class="flex-item content-center" fxFlex="80%">ToolBar
+        <div class="flex-item content-center" fxFlex="80%">{{selectedType.name}}
         </div>
       </div>
     </mat-toolbar>
-    <mat-expansion-panel list-item-first>
+    <mat-expansion-panel list-item-first *ngFor="let type of selectedType.list">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          子分类1
+          {{type.name}}
         </mat-panel-title>
       </mat-expansion-panel-header>
-      分类下的内容
-    </mat-expansion-panel>
-    <mat-expansion-panel list-item-first>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          子分类1
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      分类下的内容
-    </mat-expansion-panel>
-    <mat-expansion-panel list-item-first>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          子分类1
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      分类下的内容
-    </mat-expansion-panel>
-    <mat-expansion-panel list-item-first>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          子分类1
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      分类下的内容
-    </mat-expansion-panel>
-    <mat-expansion-panel list-item-first>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          子分类1
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      分类下的内容
-    </mat-expansion-panel>
-    <mat-expansion-panel list-item-first>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          子分类1
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      分类下的内容
+      <mat-list>
+        <mat-list-item *ngFor="let child of type.list">{{child.name}}</mat-list-item>
+      </mat-list>
     </mat-expansion-panel>
   </mat-sidenav>
   <div>
@@ -131,9 +92,9 @@
 
               </div>
               <div class="flex-item content-center" fxFlex="50%">
-                <form>
+                <form [formGroup]="form">
                     <mat-form-field>
-                      <input matInput placeholder="减价" type="number">
+                      <input matInput placeholder="减价" type="number" [formControl]="form.controls['reduceNumber']" (input)="reduceNumberChange()">
                     </mat-form-field>
                 </form>
               </div>
@@ -157,25 +118,29 @@
         <mat-card class="noPadding">
           <mat-card-actions class="bottom-button">
             <div class="flex-container" fxLayout="row">
-              <div class="flex-item content-center" fxFlex="20%">
-                <span>Putotal</span><br>
-                <span>{{totalData.Putotal}}</span>
+              <div class="flex-item content-center" fxFlex="16.6%">
+                <span>Total</span><br>
+                <span>{{totalData.total}}</span>
               </div>
-              <div class="flex-item content-center" fxFlex="20%">
+              <div class="flex-item content-center" fxFlex="16.6%">
                 <span>TAX({{totalData.tax1}}%)</span><br>
                 <span>{{totalData.Putotal * totalData.tax1 / 100}}</span>
               </div>
-              <div class="flex-item content-center" fxFlex="20%">
+              <div class="flex-item content-center" fxFlex="16.6%">
                 <span>TAX({{totalData.tax2}}%)</span><br>
                 <span>{{totalData.Putotal * totalData.tax2 / 100}}</span>
               </div>
-              <div class="flex-item content-center" fxFlex="20%">
+              <div class="flex-item content-center" fxFlex="16.6%">
                 <span>TAX({{totalData.tax3}}%)</span><br>
                 <span>{{totalData.Putotal * totalData.tax3 / 100}}</span>
               </div>
-              <div class="flex-item content-center" fxFlex="20%">
-                <span>Total</span><br>
-                <span>{{totalData.total}}</span>
+              <div class="flex-item content-center" fxFlex="16.6%">
+                <span>TAX({{totalData.tax4}}%)</span><br>
+                <span>{{totalData.Putotal * totalData.tax4 / 100}}</span>
+              </div>
+              <div class="flex-item content-center" fxFlex="16.6%">
+                <span>Putotal</span><br>
+                <span>{{totalData.Putotal}}</span>
               </div>
             </div>
           </mat-card-actions>

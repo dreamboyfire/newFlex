@@ -36,26 +36,30 @@
   min-width: 1000px !important;
 }
 
+mat-card {
+  min-width: 1000px !important;
+}
+
 .content-center {
   padding: 15px !important;
   mat-card {
     @media screen and (min-height: 768px) {
       mat-card-content {
-        height: 600px;
+        height: 450px;
         overflow-y: scroll;
       }
     }
 
     @media screen and (min-height: 1024px) {
       mat-card-content {
-        height: 800px;
+        height: 650px;
         overflow-y: scroll;
       }
     }
 
     @media screen and (min-height: 1080px) {
       mat-card-content {
-        height: 900px;
+        height: 750px;
         overflow-y: scroll;
       }
     }

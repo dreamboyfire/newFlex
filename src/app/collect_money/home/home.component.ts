@@ -22,6 +22,10 @@ export class CollectMoneyHomeComponent implements OnInit {
   showTypeList = false;
   rowFxFlex = "100%";
 
+  reduceNumber = 0;
+
+  public form: FormGroup;
+
   totalData = {
     Putotal: 0,
     tax1: 10,
@@ -31,8 +35,202 @@ export class CollectMoneyHomeComponent implements OnInit {
     total: 0
   };
 
-  ngOnInit(): void {
+  typeDatas = [
+    {
+      name: "菜品",
+      list: [{
+        name: "菜品分类1",
+        list: [{
+          name: "菜品1"
+        }, {
+          name: "菜品2"
+        }, {
+          name: "菜品3"
+        }, {
+          name: "菜品4"
+        }, {
+          name: "菜品5"
+        }, {
+          name: "菜品6"
+        }]
+      }, {
+        name: "菜品分类2",
+        list: [{
+          name: "菜品1"
+        }, {
+          name: "菜品2"
+        }, {
+          name: "菜品3"
+        }, {
+          name: "菜品4"
+        }, {
+          name: "菜品5"
+        }, {
+          name: "菜品6"
+        }]
+      }, {
+        name: "菜品分类3",
+        list: [{
+          name: "菜品1"
+        }, {
+          name: "菜品2"
+        }, {
+          name: "菜品3"
+        }, {
+          name: "菜品4"
+        }, {
+          name: "菜品5"
+        }, {
+          name: "菜品6"
+        }]
+      }, {
+        name: "菜品分类4",
+        list: [{
+          name: "菜品1"
+        }, {
+          name: "菜品2"
+        }, {
+          name: "菜品3"
+        }, {
+          name: "菜品4"
+        }, {
+          name: "菜品5"
+        }, {
+          name: "菜品6"
+        }]
+      }, {
+        name: "菜品分类5",
+        list: [{
+          name: "菜品1"
+        }, {
+          name: "菜品2"
+        }, {
+          name: "菜品3"
+        }, {
+          name: "菜品4"
+        }, {
+          name: "菜品5"
+        }, {
+          name: "菜品6"
+        }]
+      }, {
+        name: "菜品分类6",
+        list: [{
+          name: "菜品1"
+        }, {
+          name: "菜品2"
+        }, {
+          name: "菜品3"
+        }, {
+          name: "菜品4"
+        }, {
+          name: "菜品5"
+        }, {
+          name: "菜品6"
+        }]
+      }]
+    }, {
+      name: "酒水",
+      list: [{
+        name: "酒水分类1",
+        list: [{
+          name: "酒水1"
+        }, {
+          name: "酒水2"
+        }, {
+          name: "酒水3"
+        }, {
+          name: "酒水4"
+        }, {
+          name: "酒水5"
+        }, {
+          name: "酒水6"
+        }]
+      }, {
+        name: "酒水分类2",
+        list: [{
+          name: "酒水1"
+        }, {
+          name: "酒水2"
+        }, {
+          name: "酒水3"
+        }, {
+          name: "酒水4"
+        }, {
+          name: "酒水5"
+        }, {
+          name: "酒水6"
+        }]
+      }, {
+        name: "酒水分类3",
+        list: [{
+          name: "酒水1"
+        }, {
+          name: "酒水2"
+        }, {
+          name: "酒水3"
+        }, {
+          name: "酒水4"
+        }, {
+          name: "酒水5"
+        }, {
+          name: "酒水6"
+        }]
+      }, {
+        name: "酒水分类4",
+        list: [{
+          name: "酒水1"
+        }, {
+          name: "酒水2"
+        }, {
+          name: "酒水3"
+        }, {
+          name: "酒水4"
+        }, {
+          name: "酒水5"
+        }, {
+          name: "酒水6"
+        }]
+      }, {
+        name: "酒水分类5",
+        list: [{
+          name: "酒水1"
+        }, {
+          name: "酒水2"
+        }, {
+          name: "酒水3"
+        }, {
+          name: "酒水4"
+        }, {
+          name: "酒水5"
+        }, {
+          name: "酒水6"
+        }]
+      }, {
+        name: "酒水分类6",
+        list: [{
+          name: "酒水1"
+        }, {
+          name: "酒水2"
+        }, {
+          name: "酒水3"
+        }, {
+          name: "酒水4"
+        }, {
+          name: "酒水5"
+        }, {
+          name: "酒水6"
+        }]
+      }]
+    }
+  ];
 
+  selectedType = null;
+
+  ngOnInit(): void {
+    this.form = this.fb.group ( {
+      reduceNumber: [null]
+    } );
   }
 
   currentTime:string = "";
@@ -49,10 +247,16 @@ export class CollectMoneyHomeComponent implements OnInit {
     });
     this.dataSource = new ExampleDataSource();
 
+    this.selectedType = this.typeDatas[0];
+
   }
 
   showType(sidenav, row) {
     sidenav.open();
+  }
+
+  switchType(item) {
+    this.selectedType = item;
   }
 
   showDialog(row) {
@@ -110,6 +314,15 @@ export class CollectMoneyHomeComponent implements OnInit {
       this.totalData.total = 0;
     }
     this.dataSource = new ExampleDataSource();
+  }
+
+  reduceNumberChange() {
+    console.log(this.form.get("reduceNumber").value);
+    if (this.form.get("reduceNumber").value < 0) {
+      this.form.setValue({
+        reduceNumber: 0
+      });
+    }
   }
 
 }
