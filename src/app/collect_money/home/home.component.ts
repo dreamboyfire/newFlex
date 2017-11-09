@@ -227,6 +227,8 @@ export class CollectMoneyHomeComponent implements OnInit {
 
   selectedType = null;
 
+  lineNo = 0;
+
   ngOnInit(): void {
     this.form = this.fb.group ( {
       reduceNumber: [null]
@@ -259,10 +261,18 @@ export class CollectMoneyHomeComponent implements OnInit {
     this.selectedType = item;
   }
 
-  showDialog(row) {
+  showDialog(type) {
+    this.lineNo++;
+    let billCode = "";
+    if (type) {
+      billCode = type + this.lineNo;
+    }
 
     let dialogRef = this.dialog.open(CollectMoneyInfoDialog, {
-      width: '500px'
+      width: '500px',
+      data: {
+        billCode: billCode
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -391,10 +401,14 @@ export class CollectMoneyInfoDialog implements OnInit{
   displayedColumns = ['id', 'Quantity', 'produit'];
   dataSource = new ExampleDataSource();
 
+  billCode = "";
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CollectMoneyInfoDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.billCode = data.billCode;
+  }
 
   ngOnInit() {
 

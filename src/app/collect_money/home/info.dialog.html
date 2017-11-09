@@ -1,16 +1,36 @@
-<h2>桌号/人数</h2>
+<div class="flex-container" fxLayout="row">
+    <div class="flex-item content-center" fxFlex="rowFxFlex" style="padding: 0px !important;">
+      <div class="flex-item content-center" fxFlex="25%" style="padding-top: 0px !important;padding-bottom: 0px !important;">
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="桌号" type="number">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="flex-item content-center" fxFlex="25%" style="padding-top: 0px !important;padding-bottom: 0px !important;">
+        <form>
+          <mat-form-field>
+            <input matInput placeholder="人数" type="number">
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="flex-item content-center" fxFlex="25%" style="padding-top: 0px !important;padding-bottom: 0px !important;">
+        <h2>{{billCode}}</h2>
+      </div>
+    </div>
+</div>
 <mat-dialog-content>
   <mat-list>
-    <mat-list-item>企业名</mat-list-item>
-    <mat-list-item>企业地址：门牌号/地址</mat-list-item>
-    <mat-list-item>邮编/城市</mat-list-item>
-    <mat-list-item>企业电话</mat-list-item>
-    <mat-list-item>企业siren</mat-list-item>
-    <mat-list-item>时间</mat-list-item>
-    <mat-list-item>发票号</mat-list-item>
+    <mat-list-item class="billContent">企业名</mat-list-item>
+    <mat-list-item class="billContent">企业地址：门牌号/地址</mat-list-item>
+    <mat-list-item class="billContent">邮编/城市</mat-list-item>
+    <mat-list-item class="billContent">企业电话</mat-list-item>
+    <mat-list-item class="billContent">企业siren</mat-list-item>
+    <mat-list-item class="billContent">时间</mat-list-item>
+    <mat-list-item class="billContent">发票号</mat-list-item>
   </mat-list>
-  <mat-card>
-    <mat-table #table [dataSource]="dataSource">
+  <mat-card style="padding: 0px !important;width: 100%!important;min-width: 0px !important;">
+    <mat-table #table [dataSource]="dataSource" style="min-width: 0px !important;">
 
       <!-- Position Column -->
       <ng-container matColumnDef="id">
