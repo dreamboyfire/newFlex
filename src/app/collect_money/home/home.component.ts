@@ -398,7 +398,7 @@ export class CollectMoneyInfoDialog implements OnInit{
 
   reducePrice = "1";
 
-  displayedColumns = ['id', 'Quantity', 'produit'];
+  displayedColumns = ['id', 'Quantity', 'produit', 'price'];
   dataSource = new ExampleDataSource();
 
   billCode = "";
@@ -428,18 +428,19 @@ export interface infoElement {
   id: string;
   Quantity: string;
   produit: string;
+  price: number;
 }
 
 const infoData: infoElement[] = [
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'},
-  {id: "a2", Quantity: "1", produit: 'Maintanance'}
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10},
+  {id: "a2", Quantity: "1", produit: 'Maintanance', price: 10}
 ];
 
 /**

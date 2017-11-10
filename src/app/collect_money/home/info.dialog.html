@@ -50,10 +50,28 @@
         <mat-cell *matCellDef="let element">{{element.produit}}</mat-cell>
       </ng-container>
 
+      <!-- Weight Column -->
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>price</mat-header-cell>
+        <mat-cell *matCellDef="let element" >{{element.price}}</mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </mat-card>
+  <div class="flex-container" fxLayout="row">
+    <div class="flex-item content-center" fxFlex="50%" style="padding: 0px !important;">
+      <h2>TOTAL...</h2>
+      <span>HT</span><br>
+      <span>TVA</span>
+    </div>
+    <div class="flex-item content-center" fxFlex="50%" style="padding: 0px !important;text-align: right;">
+      <h2>63.30</h2>
+      <span>57.55</span><br>
+      <span>10</span>
+    </div>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <div class="button-group">
