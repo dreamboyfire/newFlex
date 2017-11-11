@@ -22,10 +22,12 @@
 <mat-dialog-content>
   <mat-list>
     <mat-list-item class="billContent">企业名</mat-list-item>
-    <mat-list-item class="billContent">企业地址：门牌号/地址</mat-list-item>
+    <mat-list-item class="billContent" *ngIf="type === ''">企业地址：门牌号/地址</mat-list-item>
     <mat-list-item class="billContent">邮编/城市</mat-list-item>
     <mat-list-item class="billContent">企业电话</mat-list-item>
     <mat-list-item class="billContent">企业siren</mat-list-item>
+    <mat-list-item class="billContent" *ngIf="type==='L'">客户姓名</mat-list-item>
+    <mat-list-item class="billContent" *ngIf="type==='L'">客户联系电话</mat-list-item>
     <mat-list-item class="billContent">时间</mat-list-item>
     <mat-list-item class="billContent">发票号</mat-list-item>
   </mat-list>
@@ -76,6 +78,6 @@
 <mat-dialog-actions>
   <div class="button-group">
     <button mat-raised-button class="dangerButton">打印账单</button>
-    <button mat-raised-button>减价</button>
+    <button mat-raised-button *ngIf="type === ''">减价</button>
   </div>
 </mat-dialog-actions>

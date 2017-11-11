@@ -271,7 +271,8 @@ export class CollectMoneyHomeComponent implements OnInit {
     let dialogRef = this.dialog.open(CollectMoneyInfoDialog, {
       width: '500px',
       data: {
-        billCode: billCode
+        billCode: billCode,
+        type: type
       }
     });
 
@@ -403,11 +404,14 @@ export class CollectMoneyInfoDialog implements OnInit{
 
   billCode = "";
 
+  type = "";
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<CollectMoneyInfoDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.billCode = data.billCode;
+    this.type = data.type;
   }
 
   ngOnInit() {
